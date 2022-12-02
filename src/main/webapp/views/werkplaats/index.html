@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:include="~{/templates/skeleton-algemeen :: page(#{werkplaats.title}, 'werkplaats')}"
+      th:lang="${#locale.language}">
+<body>
+
+<ol th:fragment="breadcrumb" class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page" th:text="#{werkplaats.title}"></li>
+</ol>
+
+<div th:fragment="content">
+    werkplaats
+</div>
+
+<div th:fragment="scripts">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:include="~{/templates/skeleton-algemeen :: page(#{educatie.title}, 'educatie')}"
+      th:lang="${#locale.language}">
+<body>
+
+<ol th:fragment="breadcrumb" class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page" th:text="#{educatie.title}"></li>
+</ol>
+
+<div th:fragment="content">
+    educatie
+</div>
+
+<div th:fragment="scripts">
+</div>
+
+</body>
+</html>

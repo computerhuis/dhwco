@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:include="~{/templates/skeleton-algemeen :: page(#{admin.tijdregistraties.title} + ' | ' + #{admin.title}, 'tijdregistraties')}"
+      th:lang="${#locale.language}">
+<body>
+
+<ol th:fragment="breadcrumb" class="breadcrumb">
+    <li class="breadcrumb-item" aria-current="page" th:text="#{admin.title}"></li>
+    <li class="breadcrumb-item active" aria-current="page" th:text="#{admin.tijdregistraties.title}"></li>
+</ol>
+
+<div th:fragment="content">
+    admin - tijdregistraties
+</div>
+
+<div th:fragment="scripts">
+</div>
+
+</body>
+</html>

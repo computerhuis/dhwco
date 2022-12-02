@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:include="~{/templates/skeleton-algemeen :: page(#{admin.rechten.title} + ' | ' + #{admin.title}, 'rechten')}"
+      th:lang="${#locale.language}">
+<body>
+
+<ol th:fragment="breadcrumb" class="breadcrumb">
+    <li class="breadcrumb-item" aria-current="page" th:text="#{admin.title}"></li>
+    <li class="breadcrumb-item active" aria-current="page" th:text="#{admin.rechten.title}"></li>
+</ol>
+
+<div th:fragment="content">
+    admin - rechten
+</div>
+
+<div th:fragment="scripts">
+</div>
+
+</body>
+</html>

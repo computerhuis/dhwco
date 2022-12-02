@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:include="~{/templates/skeleton-algemeen :: page(#{monitor.title}, 'monitor')}"
+      th:lang="${#locale.language}">
+<body>
+
+<ol th:fragment="breadcrumb" class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page" th:text="#{monitor.title}"></li>
+</ol>
+
+<div th:fragment="content">
+    monitor
+</div>
+
+<div th:fragment="scripts">
+</div>
+
+</body>
+</html>

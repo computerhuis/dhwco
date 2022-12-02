@@ -1,0 +1,131 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<body>
+
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <base th:href="@{/}">
+
+    <script th:src="@{/assets/js/jquery-3.6.1.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap-initialization.js}"></script>
+    <script th:src="@{/assets/js/datatable/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/assets/js/datatable/dataTables.bootstrap5.min.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap-icons.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/dataTables.bootstrap5.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/computerhuis.css}">
+
+    <link rel="shortcut icon" th:href="@{/assets/images/logo-ct.png}" type="image/x-icon">
+    <title th:text="${title} + ' | Werkgroep Computerhuis Oost'"></title>
+</head>
+
+<footer class="mt-auto" th:fragment="footer">
+    <div class="container text-center pb-3">
+        <hr/>
+        &copy;&nbsp;<span th:remove="tag" th:text="${#dates.format(#dates.createNow(),'YYYY')}"></span>,
+        Werkgroep Computerhuis Oost
+    </div>
+</footer>
+
+<nav class="navbar navbar-expand-lg bg-light" th:fragment="navigation(navigation)">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/assets/images/logo-ct.png}" alt="" height="24">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#hoofdmenu"
+                aria-controls="hoofdmenuContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="hoofdmenu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_WERKPLAATS')">
+                    <a class="nav-link"
+                       th:classappend="${navigation} == 'werkplaats' ? 'active' : ''"
+                       th:href="@{/werkplaats}">Werkplaats</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('ROLE_BALIE')">
+                    <a class="nav-link"
+                       th:classappend="${navigation} == 'balie' ? 'active' : ''"
+                       th:href="@{/balie}">
+                        Balie
+                    </a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('ROLE_EDUCATIE')">
+                    <a class="nav-link"
+                       th:classappend="${navigation} == 'educatie' ? 'active' : ''"
+                       th:href="@{/educatie}">Educatie</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('ROLE_MONITOR')">
+                    <a class="nav-link"
+                       th:classappend="${navigation} == 'monitor' ? 'active' : ''"
+                       th:href="@{/monitor}">Monitor</a>
+                </li>
+                <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a class="nav-link dropdown-toggle"
+                       th:classappend="${navigation} == 'admin' ? 'active' : ''"
+                       href="#"
+                       data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item"
+                               th:classappend="${navigation} == 'rechten' ? 'active' : ''"
+                               th:href="@{/admin}">Rechten</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item"
+                               th:classappend="${navigation} == 'personen' ? 'active' : ''"
+                               th:href="@{/admin/personen}">Personen</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                               th:classappend="${navigation} == 'bedrijven' ? 'active' : ''"
+                               th:href="@{/admin/bedrijven}">Bedrijven</a></li>
+                        <li><a class="dropdown-item"
+                               th:classappend="${navigation} == 'computers' ? 'active' : ''"
+                               th:href="@{/admin/computers}">Computers</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item"
+                               th:classappend="${navigation} == 'reparaties' ? 'active' : ''"
+                               th:href="@{/admin/reparaties}">Reparaties</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                               th:classappend="${navigation} == 'tijdregistraties' ? 'active' : ''"
+                               th:href="@{/admin/tijdregistraties}">Tijdregistraties</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item"
+                               th:classappend="${navigation} == 'activiteiten' ? 'active' : ''"
+                               th:href="@{/admin/activiteiten}">Activiteiten</a>
+                        </li>
+                        <li><a class="dropdown-item"
+                               th:classappend="${navigation} == 'postcodes' ? 'active' : ''"
+                               th:href="@{/admin/postcodes}">Postcodes</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="d-flex">
+                <form method="post" th:action="@{/uitloggen}">
+                    <button class="btn btn-outline-success" type="submit">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span class="nav-link-text ms-1">Uitloggen</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>
