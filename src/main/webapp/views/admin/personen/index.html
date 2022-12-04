@@ -10,10 +10,25 @@
 </ol>
 
 <div th:fragment="content">
-    admin - personen
+    <table id="personen-tabel" class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Voorletters</th>
+            <th>Tussenvoegsels</th>
+            <th>Achternaam</th>
+            <th>Email</th>
+            <th>Postcode</th>
+            <th>Inschrijf datum</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 </div>
 
 <div th:fragment="scripts">
+    <script th:src="@{/assets/js/admin/personen/index.js}"></script>
 </div>
 
 </body>

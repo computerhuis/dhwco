@@ -1,6 +1,6 @@
-package com.github.computerhuis.dhwco.web.admin.bedrijven;
+package com.github.computerhuis.dhwco.web.admin.computers;
 
-import com.github.computerhuis.dhwco.repository.BedrijfRepository;
+import com.github.computerhuis.dhwco.repository.PersoonRepository;
 import com.github.computerhuis.dhwco.web.core.DataTable;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -12,22 +12,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 @RequiredArgsConstructor
-@RequestMapping("/api/admin/bedrijven")
+@RequestMapping("/api/admin/personen")
 @RestController
-public class AdminBedrijvenRestController {
-    private final BedrijfRepository bedrijfRepository;
+public class AdminPersonenRestController {
+    private final PersoonRepository persoonRepository;
 
     @GetMapping
     public DataTable get() {
-        val bedrijven = bedrijfRepository.findAll();
+        val personen = persoonRepository.findAll();
         final List<List<String>> data = new LinkedList<>();
-        for (val bedrijf : bedrijven) {
+        for (val persoon : personen) {
             List<String> row = new LinkedList<>();
-            row.add(bedrijf.getNr().toString());
-            row.add(bedrijf.getNaam());
-            row.add(bedrijf.getWoonplaats());
-            row.add(bedrijf.getPostcode());
-            row.add(bedrijf.getInschrijfDatum().toString());
+            row.add(persoon.getNr().toString());
+
             data.add(row);
         }
         return new DataTable(data);
