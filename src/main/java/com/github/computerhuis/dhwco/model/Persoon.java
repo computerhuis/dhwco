@@ -7,6 +7,8 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
 
 @DynamicUpdate
 @DynamicInsert
@@ -21,4 +23,20 @@ public class Persoon implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long nr;
+
+    private String voornaam;
+    private String tussenvoegsels;
+    private String achternaam;
+    private LocalDate geboortedatum;
+    private String email;
+    private String mobile;
+    private String telefoon;
+    private String postcode;
+    private String straat;
+    private Integer huisnummer;
+    private String huisnummertoevoeging;
+    private String woonplaats;
+    private String opmerkingen;
+    private OffsetDateTime inschrijfDatum;
+    private OffsetDateTime uitschrijfDatum;
 }

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/admin/computers")
 @Controller
-public class AdminComputersController {
+class AdminComputersController {
     @GetMapping
     public String get() {
         return "/admin/computers/index";

@@ -10,6 +10,23 @@ $(document).ready(function () {
         },
         language: {
             url: './assets/js/datatable/nl-NL.json'
-        }
+        },
+        columns: [
+            {data: 'nr'},
+            {data: 'naam'},
+            {data: 'woonplaats'},
+            {data: 'postcode'},
+            {
+                data: 'inschrijfDatum',
+                render: function (data, type) {
+                    return new Date(data).toLocaleDateString();
+                }
+            }, {
+                data: 'uitschrijfDatum',
+                render: function (data, type) {
+                    return new Date(data).toLocaleDateString();
+                }
+            }
+        ]
     });
 });

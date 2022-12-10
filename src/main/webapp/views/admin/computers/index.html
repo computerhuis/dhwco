@@ -10,10 +10,24 @@
 </ol>
 
 <div th:fragment="content">
-    admin - computers
+    <table id="computers-tabel" class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fabriekant</th>
+            <th>Model</th>
+            <th>Type</th>
+            <th>Inschrijf datum</th>
+            <th>Uitschrijf datum</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 </div>
 
 <div th:fragment="scripts">
+    <script th:src="@{/assets/js/admin/computers/index.js}"></script>
 </div>
 
 </body>
