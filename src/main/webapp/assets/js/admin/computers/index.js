@@ -19,12 +19,18 @@ $(document).ready(function () {
             {
                 data: 'inboekDatum',
                 render: function (data, type) {
+                    if (data === null) {
+                        return null;
+                    }
                     return new Date(data).toLocaleDateString();
                 }
             },
             {
                 data: 'uitboekDatum',
                 render: function (data, type) {
+                    if (data === null) {
+                        return null;
+                    }
                     return new Date(data).toLocaleDateString();
                 }
             }

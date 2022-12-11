@@ -19,11 +19,17 @@ $(document).ready(function () {
             {
                 data: 'inschrijfDatum',
                 render: function (data, type) {
+                    if (data === null) {
+                        return null;
+                    }
                     return new Date(data).toLocaleDateString();
                 }
             }, {
                 data: 'uitschrijfDatum',
                 render: function (data, type) {
+                    if (data === null) {
+                        return null;
+                    }
                     return new Date(data).toLocaleDateString();
                 }
             }
