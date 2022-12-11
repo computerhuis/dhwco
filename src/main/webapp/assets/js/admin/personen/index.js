@@ -12,7 +12,15 @@ $(document).ready(function () {
             url: './assets/js/datatable/nl-NL.json'
         },
         columns: [
-            {data: 'nr'},
+            {
+                data: 'nr',
+                render: function (data, type) {
+                    if (data === null) {
+                        return null;
+                    }
+                    return '<a href="./admin/personen/' + data + '">' + data + '</a>';
+                }
+            },
             {data: 'voornaam'},
             {data: 'tussenvoegsels'},
             {data: 'achternaam'},
