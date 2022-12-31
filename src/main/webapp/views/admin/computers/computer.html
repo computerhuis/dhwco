@@ -10,75 +10,83 @@
     <li class="breadcrumb-item active" aria-current="page" th:text="${nr}"></li>
 </ol>
 
-<div th:fragment="content" th:object="${computer}">
-    <form th:action="@{''}" method="post">
+<div th:fragment="content">
+    <form class="needs-validation" novalidate>
+        <input type="hidden" id="_csrf" th:value="${_csrf.token}" disabled readonly>
+        <input type="hidden" id="_csrf_header" th:value="${_csrf.headerName}" disabled readonly>
+
         <h1>Details van Computer</h1>
         <hr/>
         <div class="row mt-1">
-            <label class="col-4 col-form-label" for="eigenaar">Eigenaar:</label>
+            <label class="col-4 col-form-label" for="persoonNr">Eigenaar:</label>
             <div class="col-8">
-                <!--                <a th:if="*{persoonNr}" id="eigenaar" th:href="@{'/admin/personen/persoon.php?id='+ *{persoonNr}}" th:text="*{persoonNr}"></a>-->
+                <a id="persoonNr" href="./admin/personen/"></a>
             </div>
         </div>
         <div class="row mt-1">
-            <label class="col-4 col-form-label" for="gedoneerd">Gedoneerd door:</label>
+            <label class="col-4 col-form-label" for="bedrijfNr">Gedoneerd door:</label>
             <div class="col-8">
-                <!--                <a th:if="*{bedrijfNr}" id="gedoneerd" th:href="@{'/admin/bedrijven/bedrijf.php?id='+*{bedrijfNr}" th:text="*{bedrijfNr}"></a>-->
+                <a id="bedrijfNr" href="./admin/personen/"></a>
             </div>
         </div>
 
-        <div class="row mt-1">
-            <label class="col-4 col-form-label" for="computer-type">Type:</label>
+        <div class="row">
+            <label class="col-4 col-form-label" for="nr">nummer:</label>
             <div class="col-8">
-                <select id="computer-type" class="form-select mb-1" th:field="*{type}">
+                <input class="form-control" id="nr" type="number" disabled readonly th:value="*{nr}">
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="inboekDatum">Inboek datum:</label>
+            <div class="col-8">
+                <input class="form-control" id="inboekDatum" type="datetime-local" disabled readonly>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="type">Type:</label>
+            <div class="col-8">
+                <select id="type" class="form-select mb-1" disabled>
                     <option th:each="ctype : ${T(com.github.computerhuis.dhwco.model.ComputerType).values()}"
                             th:value="${ctype}" th:text="${ctype}"></option>
                 </select>
             </div>
         </div>
-        <div class="row">
-            <label class="col-4 col-form-label" for="nr">nummer:</label>
-            <div class="col-8">
-                <input class="form-control" id="nr" disabled th:field="*{nr}">
-            </div>
-        </div>
-        <div class="row mt-1">
-            <label class="col-4 col-form-label" for="inboek_datum">Inboek datum:</label>
-            <div class="col-8">
-                <input class="form-control" id="inboek_datum" type="datetime-local" disabled th:field="*{inboekDatum}">
-            </div>
-        </div>
         <div class="row mt-1">
             <label class="col-4 col-form-label" for="fabrikant">fabrikant:</label>
             <div class="col-8">
-                <input class="form-control" id="fabrikant" th:field="*{fabrikant}">
+                <input class="form-control" id="fabrikant" disabled>
             </div>
         </div>
         <div class="row mt-1">
             <label class="col-4 col-form-label" for="model">model:</label>
             <div class="col-8">
-                <input class="form-control" id="model" th:field="*{model}">
+                <input class="form-control" id="model" disabled>
             </div>
         </div>
         <div class="row mt-1">
-            <label class="col-4 col-form-label" for="uitboek_datum">Uitboek datum:</label>
+            <label class="col-4 col-form-label" for="uitboekDatum">Uitboek datum:</label>
             <div class="col-8">
-                <input class="form-control" id="uitboek_datum" type="datetime-local" th:field="*{uitboekDatum}">
+                <input class="form-control" id="uitboekDatum" type="datetime-local" disabled>
             </div>
         </div>
         <hr/>
         <div class="row mt-1">
             <label class="col-4 col-form-label" for="specificatie">Specificatie:</label>
             <div class="col-8">
-                <textarea class="form-control" id="specificatie" th:field="*{specificatie}" rows="6"></textarea>
+                <textarea class="form-control" id="specificatie" disabled rows="6"></textarea>
             </div>
         </div>
         <div class="row mt-5 mb-3">
             <div class="col-6 text-center">
-                <button type="reset" class="btn btn-outline-primary">Reset</button>
+                <button type="reset" class="btn btn-outline-primary" disabled>Reset</button>
             </div>
             <div class="col-6 text-center">
-                <button type="submit" class="btn btn-primary">Opslaan</button>
+                <button type="submit" class="btn btn-primary" disabled>
+                    <div id="submit_spinner" class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Laden...</span>
+                    </div>
+                    Opslaan
+                </button>
             </div>
         </div>
 
@@ -86,6 +94,9 @@
 </div>
 
 <div th:fragment="scripts">
+    <script th:src="@{/assets/js/stdlib.js}"></script>
+    <script th:src="@{/assets/js/admin/computers/computer.js}"></script>
+
 </div>
 
 </body>

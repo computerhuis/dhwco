@@ -1,6 +1,5 @@
 package com.github.computerhuis.dhwco.web.admin.personen;
 
-import com.github.computerhuis.dhwco.repository.PersoonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/personen")
 @Controller
 class AdminPersonenController {
-
-    private final PersoonRepository persoonRepository;
 
     @GetMapping
     public String get() {

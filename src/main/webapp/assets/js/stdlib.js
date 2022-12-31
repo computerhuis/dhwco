@@ -108,15 +108,21 @@ computerhuis.form.fill_auto = function (entyset, excludes = []) {
     Object.entries(entyset).forEach(([key, value]) => {
         if (!excludes.includes(key)) {
             let field = $('#' + key);
+            let tag = field.prop('nodeName')
             let type = field.attr('type');
-            console.log('For field [' + key + '] detected type [' + type + ']: [' + value + ']');
-            if (type === 'radio') {
+            console.log('For field [' + key + '] of tag [' + tag + '] detected type [' + type + ']: [' + value + ']');
 
-            } else if (type === 'select') {
+            if (!computerhuis.isBlank(value)) {
+                if (tag === 'A') {
+                    field.text(value);
+                    var _href = field.attr("href");
+                    field.attr("href", field.attr("href") + value);
+                } else {
+                    if (type === 'radio') {
 
-            } else {
-                if (!computerhuis.isBlank(value)) {
-                    field.val(value);
+                    } else {
+                        field.val(value);
+                    }
                 }
             }
         }

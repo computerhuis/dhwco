@@ -31,7 +31,6 @@ class AdminPersonenRestController {
         if (persoon.isEmpty()) {
             throw new RestResponseStatusException(HttpStatus.NOT_FOUND, MessageSourceConfiguration.getLabel("admin.persoon.exception.not_found"));
         }
-
         return persoon.get();
     }
 }
