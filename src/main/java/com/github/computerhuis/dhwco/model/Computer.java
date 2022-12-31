@@ -7,7 +7,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 
 @DynamicUpdate
 @DynamicInsert
@@ -31,6 +31,6 @@ public class Computer implements Serializable {
     private Long bedrijfNr;
     private Long persoonNr;
 
-    private OffsetDateTime inboekDatum;
-    private OffsetDateTime uitboekDatum;
+    private LocalDateTime inboekDatum;
+    private LocalDateTime uitboekDatum;
 }

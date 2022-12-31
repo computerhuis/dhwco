@@ -24,6 +24,12 @@ spring:
       database-platform: org.hibernate.dialect.MariaDBDialect
       hbm2ddl:
         auto: validate
+      # ================================================================================================================
+      # = HIBERNATE
+      # ================================================================================================================
+      hibernate:
+        jdbc:
+          time_zone: Europe/Amsterdam
 
   # ====================================================================================================================
   # = WEB
@@ -43,7 +49,6 @@ spring:
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
-    time-zone: Europe/Amsterdam
 
 # ======================================================================================================================
 # = SERVER - INCLUDE AN ERROR MESSAGE JSON

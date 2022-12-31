@@ -1,8 +1,14 @@
 package com.github.computerhuis.dhwco.web.admin.bedrijven;
 
+import com.github.computerhuis.dhwco.config.MessageSourceConfiguration;
+import com.github.computerhuis.dhwco.exception.RestResponseStatusException;
+import com.github.computerhuis.dhwco.model.Bedrijf;
 import com.github.computerhuis.dhwco.repository.BedrijfRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,5 +23,14 @@ class AdminBedrijvenRestController {
     @GetMapping
     public OverzichtBedrijven get() {
         return new OverzichtBedrijven(bedrijfMapper.toSet(bedrijfRepository.findAll()));
+    }
+
+    @GetMapping("/{nr}")
+    public Bedrijf getBedrijf(@PathVariable("nr") final long nr) {
+        val bedrijf = bedrijfRepository.findById(nr);
+        if (bedrijf.isEmpty()) {
+            throw new RestResponseStatusException(HttpStatus.NOT_FOUND, MessageSourceConfiguration.getLabel("admin.bedrijf.exception.not_found"));
+        }
+        return bedrijf.get();
     }
 }

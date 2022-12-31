@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:include="~{/templates/skeleton-algemeen :: page(#{admin.bedrijven.title} + ' | ' + #{admin.title}, 'bedrijven')}"
+      th:lang="${#locale.language}">
+<body>
+
+<ol th:fragment="breadcrumb" class="breadcrumb">
+    <li class="breadcrumb-item" aria-current="page" th:text="#{admin.title}"></li>
+    <li class="breadcrumb-item" aria-current="page" th:text="#{admin.computers.title}"></li>
+    <li class="breadcrumb-item active" aria-current="page" th:text="${nr}"></li>
+</ol>
+
+<div th:fragment="content" th:object="${computer}">
+    <form th:action="@{''}" method="post">
+        <h1>Details van Computer</h1>
+        <hr/>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="eigenaar">Eigenaar:</label>
+            <div class="col-8">
+                <!--                <a th:if="*{persoonNr}" id="eigenaar" th:href="@{'/admin/personen/persoon.php?id='+ *{persoonNr}}" th:text="*{persoonNr}"></a>-->
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="gedoneerd">Gedoneerd door:</label>
+            <div class="col-8">
+                <!--                <a th:if="*{bedrijfNr}" id="gedoneerd" th:href="@{'/admin/bedrijven/bedrijf.php?id='+*{bedrijfNr}" th:text="*{bedrijfNr}"></a>-->
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="computer-type">Type:</label>
+            <div class="col-8">
+                <select id="computer-type" class="form-select mb-1" th:field="*{type}">
+                    <option th:each="ctype : ${T(com.github.computerhuis.dhwco.model.ComputerType).values()}"
+                            th:value="${ctype}" th:text="${ctype}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-4 col-form-label" for="nr">nummer:</label>
+            <div class="col-8">
+                <input class="form-control" id="nr" disabled th:field="*{nr}">
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="inboek_datum">Inboek datum:</label>
+            <div class="col-8">
+                <input class="form-control" id="inboek_datum" type="datetime-local" disabled th:field="*{inboekDatum}">
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="fabrikant">fabrikant:</label>
+            <div class="col-8">
+                <input class="form-control" id="fabrikant" th:field="*{fabrikant}">
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="model">model:</label>
+            <div class="col-8">
+                <input class="form-control" id="model" th:field="*{model}">
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="uitboek_datum">Uitboek datum:</label>
+            <div class="col-8">
+                <input class="form-control" id="uitboek_datum" type="datetime-local" th:field="*{uitboekDatum}">
+            </div>
+        </div>
+        <hr/>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="specificatie">Specificatie:</label>
+            <div class="col-8">
+                <textarea class="form-control" id="specificatie" th:field="*{specificatie}" rows="6"></textarea>
+            </div>
+        </div>
+        <div class="row mt-5 mb-3">
+            <div class="col-6 text-center">
+                <button type="reset" class="btn btn-outline-primary">Reset</button>
+            </div>
+            <div class="col-6 text-center">
+                <button type="submit" class="btn btn-primary">Opslaan</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div th:fragment="scripts">
+</div>
+
+</body>
+</html>

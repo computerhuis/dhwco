@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:include="~{/templates/skeleton-algemeen :: page(#{admin.bedrijven.title} + ' | ' + #{admin.title}, 'bedrijven')}"
+      th:lang="${#locale.language}">
+<body>
+
+<ol th:fragment="breadcrumb" class="breadcrumb">
+    <li class="breadcrumb-item" aria-current="page" th:text="#{admin.title}"></li>
+    <li class="breadcrumb-item" aria-current="page" th:text="#{admin.bedrijven.title}"></li>
+    <li class="breadcrumb-item active" aria-current="page" th:text="${nr}"></li>
+</ol>
+
+<div th:fragment="content">
+    <form class="needs-validation" novalidate>
+        <input type="hidden" id="_csrf" th:value="${_csrf.token}" disabled readonly>
+        <input type="hidden" id="_csrf_header" th:value="${_csrf.headerName}" disabled readonly>
+
+        <h1>Details van Bedrijf</h1>
+        <hr/>
+        <div class="row">
+            <label class="col-4 col-form-label" for="nr">Nummer:</label>
+            <div class="col-8">
+                <input class="form-control" id="nr" type="number" th:value="*{nr}" disabled readonly>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="inschrijfDatum">Inschrijf datum:</label>
+            <div class="col-8">
+                <input class="form-control" id="inschrijfDatum" type="datetime-local" disabled readonly>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="naam">Naam:</label>
+            <div class="col-8">
+                <input class="form-control" id="naam" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="kvk_nummer">KvK nummer:</label>
+            <div class="col-8">
+                <input class="form-control" id="kvk_nummer" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="btw_nummer">BTW nummer:</label>
+            <div class="col-8">
+                <input class="form-control" id="btw_nummer" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="uitschrijfDatum">Uitschrijf datum:</label>
+            <div class="col-8">
+                <input class="form-control" id="uitschrijfDatum" type="datetime-local" disabled>
+            </div>
+        </div>
+        <hr/>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="telefoon">Telefoon:</label>
+            <div class="col-8">
+                <input class="form-control" type="tel" id="telefoon" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="email">Email-adres:</label>
+            <div class="col-8">
+                <input class="form-control" type="email" id="email" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="website">Website:</label>
+            <div class="col-8">
+                <input class="form-control" id="website" type="url" disabled>
+            </div>
+        </div>
+        <hr/>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="straat">Straat:</label>
+            <div class="col-8">
+                <input class="form-control" id="straat" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="huisnummer">huisnummer:</label>
+            <div class="col-8">
+                <input class="form-control" id="huisnummer" type="number" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="huisnummertoevoeging">huisnummertoevoeging:</label>
+            <div class="col-8">
+                <input class="form-control" id="huisnummertoevoeging" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="postcode">postcode:</label>
+            <div class="col-8">
+                <input class="form-control" id="postcode" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="woonplaats">Woonplaats:</label>
+            <div class="col-8">
+                <input class="form-control" id="woonplaats" disabled>
+            </div>
+        </div>
+        <hr/>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="opmerkingen">Opmerking:</label>
+            <div class="col-8">
+                <textarea class="form-control" id="opmerkingen" disabled rows="6"></textarea>
+            </div>
+        </div>
+        <div class="row mt-5 mb-3">
+            <div class="col-6 text-center">
+                <button type="reset" class="btn btn-outline-primary" disabled>Reset</button>
+            </div>
+            <div class="col-6 text-center">
+                <button id="submit" type="submit" class="btn btn-primary" disabled>
+                    <div id="submit_spinner" class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Laden...</span>
+                    </div>
+                    Opslaan
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div th:fragment="scripts">
+    <script th:src="@{/assets/js/stdlib.js}"></script>
+    <script th:src="@{/assets/js/admin/bedrijven/bedrijf.js}"></script>
+</div>
+
+</body>
+</html>

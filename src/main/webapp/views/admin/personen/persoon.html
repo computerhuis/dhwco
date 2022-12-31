@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:include="~{/templates/skeleton-algemeen :: page(#{admin.personen.title} + ' | ' + #{admin.title}, 'personen')}"
+      th:lang="${#locale.language}">
+<body>
+
+<ol th:fragment="breadcrumb" class="breadcrumb">
+    <li class="breadcrumb-item" aria-current="page" th:text="#{admin.title}"></li>
+    <li class="breadcrumb-item" aria-current="page" th:text="#{admin.personen.title}"></li>
+    <li class="breadcrumb-item active" aria-current="page" th:text="${nr}"></li>
+</ol>
+
+<div th:fragment="content">
+    <form class="needs-validation" novalidate>
+        <input type="hidden" id="_csrf" th:value="${_csrf.token}" disabled readonly>
+        <input type="hidden" id="_csrf_header" th:value="${_csrf.headerName}" disabled readonly>
+
+        <h1>Details van Persoon</h1>
+        <hr/>
+        <div class="row">
+            <label class="col-4 col-form-label" for="nr">Gebruikersnummer:</label>
+            <div class="col-8">
+                <input class="form-control" id="nr" type="number" th:value="${nr}" disabled readonly>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="inschrijfDatum">Datum inschrijving:</label>
+            <div class="col-8">
+                <input class="form-control" id="inschrijfDatum" disabled type="datetime-local">
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="voorletters">Voorletters:</label>
+            <div class="col-8">
+                <input class="form-control" id="voorletters" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="voornaam">Voornaam:</label>
+            <div class="col-8">
+                <input class="form-control" id="voornaam" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="tussenvoegsels">Tussenvoegsels:</label>
+            <div class="col-8">
+                <input class="form-control" id="tussenvoegsels" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="achternaam">Achternaam:</label>
+            <div class="col-8">
+                <input class="form-control" id="achternaam" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="geboortedatum">Geboortedatum:</label>
+            <div class="col-6">
+                <input class="form-control" type="date" id="geboortedatum" disabled>
+            </div>
+            <label class="col-1 col-form-label text-end" for="leeftijd">Leeftijd:</label>
+            <div class="col-1">
+                <input class="form-control" id="leeftijd" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="uitschrijfDatum">Uitschrijf datum:</label>
+            <div class="col-8">
+                <input class="form-control" id="uitschrijfDatum" type="datetime-local" disabled>
+            </div>
+        </div>
+        <hr/>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="telefoon">telefoon:</label>
+            <div class="col-8">
+                <input class="form-control" type="tel" id="telefoon" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="mobile">mobile:</label>
+            <div class="col-8">
+                <input class="form-control" type="tel" id="mobile" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="email">email:</label>
+            <div class="col-8">
+                <input class="form-control" id="email" type="email" disabled>
+            </div>
+        </div>
+        <hr/>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="straat">Straat:</label>
+            <div class="col-8">
+                <input class="form-control" id="straat" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="huisnummer">huisnummer:</label>
+            <div class="col-8">
+                <input class="form-control" id="huisnummer" type="number" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="huisnummertoevoeging">huisnummertoevoeging:</label>
+            <div class="col-8">
+                <input class="form-control" id="huisnummertoevoeging" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="postcode">postcode:</label>
+            <div class="col-8">
+                <input class="form-control" id="postcode" disabled>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="woonplaats">Woonplaats:</label>
+            <div class="col-8">
+                <input class="form-control" id="woonplaats" disabled>
+            </div>
+        </div>
+        <hr/>
+        <div class="row mt-1">
+            <label class="col-4 col-form-label" for="opmerkingen">Opmerking:</label>
+            <div class="col-8">
+                <textarea class="form-control" id="opmerkingen" rows="6" disabled></textarea>
+            </div>
+        </div>
+        <div class="row mt-5 mb-3">
+            <div class="col-6 text-center">
+                <button id="reset" type="reset" class="btn btn-outline-primary" disabled>Reset</button>
+            </div>
+            <div class="col-6 text-center">
+                <button id="submit" type="submit" class="btn btn-primary" disabled>
+                    <div id="submit_spinner" class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Laden...</span>
+                    </div>
+                    Opslaan
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div th:fragment="scripts">
+    <script th:src="@{/assets/js/stdlib.js}"></script>
+    <script th:src="@{/assets/js/admin/personen/persoon.js}"></script>
+</div>
+
+</body>
+</html>

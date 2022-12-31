@@ -1,6 +1,6 @@
 package com.github.computerhuis.dhwco.web.admin.personen;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 
 public record OverzichtPersoon(Long nr,
                                String voornaam,
@@ -8,6 +8,6 @@ public record OverzichtPersoon(Long nr,
                                String achternaam,
                                String email,
                                String postcode,
-                               OffsetDateTime inschrijfDatum,
-                               OffsetDateTime uitschrijfDatum) {
+                               LocalDateTime inschrijfDatum,
+                               LocalDateTime uitschrijfDatum) {
 }

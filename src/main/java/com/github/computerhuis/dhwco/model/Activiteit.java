@@ -7,7 +7,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 
 @DynamicUpdate
 @DynamicInsert
@@ -24,7 +24,7 @@ public class Activiteit implements Serializable {
 
     private String naam;
     private boolean rapportage;
-    private OffsetDateTime actiefVanaf;
-    private OffsetDateTime actiefTot;
+    private LocalDateTime actiefVanaf;
+    private LocalDateTime actiefTot;
 
 }

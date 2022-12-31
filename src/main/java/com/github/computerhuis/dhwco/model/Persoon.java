@@ -2,13 +2,15 @@ package com.github.computerhuis.dhwco.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.val;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
+import java.time.Period;
 
 @DynamicUpdate
 @DynamicInsert
@@ -24,6 +26,7 @@ public class Persoon implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long nr;
 
+    private String voorletters;
     private String voornaam;
     private String tussenvoegsels;
     private String achternaam;
@@ -37,6 +40,15 @@ public class Persoon implements Serializable {
     private String huisnummertoevoeging;
     private String woonplaats;
     private String opmerkingen;
-    private OffsetDateTime inschrijfDatum;
-    private OffsetDateTime uitschrijfDatum;
+    private LocalDateTime inschrijfDatum;
+    private LocalDateTime uitschrijfDatum;
+
+    public Integer getLeeftijd() {
+        if (geboortedatum == null) {
+            return null;
+        }
+
+        val period = Period.between(geboortedatum, LocalDate.now());
+        return period.getYears();
+    }
 }
